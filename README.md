@@ -1,2 +1,2 @@
 # MookbarkPy
-Bookmark written in Python
+Bookmark Manager written in Python
