@@ -2,6 +2,7 @@ import os
 import pandas as pd
 
 os.system('clear')
+df = pd.read_csv('bookmarks.csv')
 
 def main():
 
@@ -16,7 +17,10 @@ def main():
         add_bookmark()
 
     elif 'filter' in user_choice:
-        filter_bookmarks()
+        user_choice = user_choice.replace('filter', '')
+        user_choice = user_choice.replace(' ', '')
+        print(user_choice)
+        filter_bookmarks(user_choice)
 
     else:
         print()
@@ -25,14 +29,13 @@ def main():
 
 def read_bookmark():
 
-    df = pd.read_csv('bookmarks.csv')
-    print(df.head())
+    print(df)
 
 def add_bookmark(): 
 
     bookmark_url = input('URL of Bookmark: ')
     bookmark_name = input('Name of Bookmark: ')
-    bookmark_tags = input('Tags of Bookmark: ') #Need to remove commas if present
+    bookmark_tags = input('Tags of Bookmark: ') #Need to remove commas if present, and lowercase all letters
 
     bookmark_string = f'{bookmark_url}, {bookmark_name}, {bookmark_tags} \n'
 
@@ -42,33 +45,23 @@ def add_bookmark():
 
     main()
 
-def open_bookmark(num):
+def open_bookmark(bookmark):
 
-    df = pd.read_csv('bookmarks.csv')
-    url = df.loc[num, 'URL']
+    url = df.loc[bookmark, 'URL']
 
     os.system(f'xdg-open {url}')
 
-    main()
+    main(
 
-def filter_bookmarks():
+def sort_bookmark(): #Sort dataframe alphabetically
+    pass
 
+def filter_bookmarks(tag): #Filter bookmark by tag
 
-    df = pd.read_csv('bookmarks.csv')
+    print()
+    newdf = df[(df.TAGS.str.contains(tag))]
+    print(newdf)
 
-    search = input('What tag would you like to filter by?: ')
-    print(search)
-
-    a = 0
-    while a < 2:
-        tags = df.iloc[a, 2]
-        print(tags)
-
-        if search in tags:
-            z = df.iloc[2]
-            print(z)
-
-        a += 1
     main()
 
 
