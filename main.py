@@ -51,12 +51,9 @@ def open_bookmark(bookmark):
 
     os.system(f'xdg-open {url}')
 
-    main(
+    main()
 
-def sort_bookmark(): #Sort dataframe alphabetically
-    pass
-
-def filter_bookmarks(tag): #Filter bookmark by tag
+def filter_bookmarks(tag): 
 
     print()
     newdf = df[(df.TAGS.str.contains(tag))]
