@@ -8,8 +8,8 @@ print(df)
 def main():
 
     print() 
-    print('Type 'add' to add a new bookmark')
-    print('Type 'filter' filter bookmarks by tag')
+    print("Type 'add' to add a new bookmark")
+    print("Type 'filter' filter bookmarks by tag")
     user_choice = input('What would you like to do?: ')
 
     try:
