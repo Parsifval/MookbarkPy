@@ -12,14 +12,23 @@ pip -r install requirements.txt
 ```
 
 # Use
-Opening a bookmark in Mookbark can be done by entering the column number associated with that bookmark
+Opening a bookmark in Mookbark can be done by entering the column number associated with that bookmark in the user prompt
 
 ## Commands
-To add a bookmark enter: 'add'
-
-To filter bookmarks by tag enter: 'filter YOUR_TAG_HERE'
-
-To put the list of bookmarks in alphabetical order: 'abc'
-
-To show the full list of bookmarks: 'show'
+To add a bookmark enter:
+```
+add
+```
+To filter bookmarks by tag enter:
+```
+filter YOUR_TAG
+```
+To put the list of bookmarks in alphabetical order:
+```
+abc
+```
+To show the full list of bookmarks:
+```
+show
+```
 
