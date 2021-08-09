@@ -1,10 +1,6 @@
 import os
 import pandas as pd
 
-os.system('clear')
-df = pd.read_csv('bookmarks.csv')
-print(df)
-
 def main():
 
     print() 
@@ -24,6 +20,10 @@ def main():
 
         elif 'show' in user_choice:
             print_bookmarks()
+
+        elif 'exit' in user_choice:
+            print('Exiting...')
+            exit()
 
         else:
             print()
@@ -78,6 +78,32 @@ def filter_bookmarks(tag):
 
     main()
 
+def first_time_check(): #Checks if program has been run before:
+
+    if os.path.exists('bookmarks.csv'):
+        pass
+
+    else:
+        print()
+        print('Lets write your first bookmark')
+        bookmarks = open('bookmarks.csv', 'a')
+        bookmarks.write('URL,NAME,TAGS\n')
+
+        bookmark_url = input('URL of Bookmark: ')
+        bookmark_name = input('Name of Bookmark: ')
+        bookmark_tags = input('Tags of Bookmark: ')
+        bookmark_tags = bookmark_tags.replace(',', ' ')
+
+        bookmark_string = f'{bookmark_url}, {bookmark_name}, {bookmark_tags} \n'
+
+        bookmarks.write(bookmark_string)
+        bookmarks.close()
+
+os.system('clear')
+first_time_check()
+print()
+df = pd.read_csv('bookmarks.csv')
+print(df)
 
 main()
     
