@@ -22,7 +22,6 @@ def main():
             print_bookmarks()
 
         elif 'exit' in user_choice:
-            print('Exiting...')
             exit()
 
         else:
@@ -30,15 +29,20 @@ def main():
             user_choice = int(user_choice)
             open_bookmark(user_choice)
 
-    except ValueError:
-        print('Error: Please enter a valid input: ')
+    except KeyError:
+        print('Error: Not a valid URL')
         main()
 
-
+    except ValueError:
+        print('Error: Please enter a valid command')
+        main()
 
 def print_bookmarks():
     
+    print()
+    df = pd.read_csv('bookmarks.csv')
     print(df)
+
     main()
 
 def add_bookmark(): 
@@ -61,11 +65,13 @@ def open_bookmark(bookmark):
 
     url = df.loc[bookmark, 'URL']
     os.system(f'xdg-open {url}')
+
     main()
 
 def alphabetize_bookmarks():
     
     print()
+    df = pd.read_csv('bookmarks.csv')
     print(df.sort_values('URL'))
 
     main()
@@ -78,7 +84,7 @@ def filter_bookmarks(tag):
 
     main()
 
-def first_time_check(): #Checks if program has been run before:
+def first_time_check(): #Checks if program has been run before, if not makes CSV with correct columns
 
     if os.path.exists('bookmarks.csv'):
         pass
@@ -101,6 +107,7 @@ def first_time_check(): #Checks if program has been run before:
 
 os.system('clear')
 first_time_check()
+
 print()
 df = pd.read_csv('bookmarks.csv')
 print(df)
