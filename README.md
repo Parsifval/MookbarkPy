@@ -1,5 +1,7 @@
 # MookbarkPy
-Bookmark Manager written in Python using the Pandas library
+Terminal based Bookmark Manager written in Python using the Pandas library
+
+![image](https://user-images.githubusercontent.com/81819378/129057842-f5518583-1d02-48b2-b6aa-4ada7be15b5f.png)
 
 # Installation
 1. Clone the repository
@@ -31,4 +33,7 @@ To show the full list of bookmarks:
 ```
 show
 ```
-
+To view the full list of commands run:
+```
+help
+```
