@@ -19,7 +19,10 @@ def main():
             alphabetize_bookmarks()
 
         elif 'show' in user_choice:
-            print_bookmarks()
+            show_bookmarks()
+
+        elif 'help' in user_choice:
+            help()
 
         elif 'exit' in user_choice:
             exit()
@@ -37,7 +40,7 @@ def main():
         print('Error: Please enter a valid command')
         main()
 
-def print_bookmarks():
+def show_bookmarks():
     
     print()
     df = pd.read_csv('bookmarks.csv')
@@ -58,7 +61,7 @@ def add_bookmark():
     bookmarks.write(bookmark_string)
     bookmarks.close()
 
-    print_bookmarks()
+    show_bookmarks()
     main()
 
 def open_bookmark(bookmark):
@@ -79,8 +82,20 @@ def alphabetize_bookmarks():
 def filter_bookmarks(tag): 
 
     print()
+    df = pd.read_csv('bookmarks.csv')
     newdf = df[(df.TAGS.str.contains(tag))]
     print(newdf)
+
+    main()
+
+def help():
+    print()
+    print("Opening a bookmark can be done by entering the column number associated with that bookmark")
+    print("To add a bookmark enter: 'add'")
+    print("To filter bookmarks by tag enter: 'filter YOUR_TAG'")
+    print("To organise your bookmarks alphabetically enter: 'abc'")
+    print("To view your bookmarks enter: 'show'")
+    print("To exit MookBark enter: 'exit'")
 
     main()
 
