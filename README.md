@@ -33,4 +33,7 @@ To show the full list of bookmarks:
 ```
 show
 ```
-
+To view the full list of commands run:
+```
+help
+```
