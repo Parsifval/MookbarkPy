@@ -1,6 +1,8 @@
 # MookbarkPy
 Bookmark Manager written in Python using the Pandas library
 
+![image](https://user-images.githubusercontent.com/81819378/129057099-423caffd-138c-404b-8105-4aa377ce2055.png)
+
 # Installation
 1. Clone the repository
 ```
