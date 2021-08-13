@@ -10,7 +10,7 @@ git clone https://github.com/Parsifval/MookbarkPy
 ```
 2. Install requirements.txt
 ```
-pip -r install requirements.txt
+pip install -r requirements.txt
 ```
 
 # Use
