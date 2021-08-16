@@ -1,5 +1,7 @@
 import os
 import pandas as pd
+from config import SHOW_URLS
+
 
 def main():
 
@@ -41,10 +43,16 @@ def main():
         main()
 
 def show_bookmarks():
-    
+
     print()
-    df = pd.read_csv('bookmarks.csv')
-    print(df)
+    if SHOW_URLS == False:
+        df = pd.read_csv('bookmarks.csv')
+        df = (df[['NAME', 'TAGS']])
+        print(df)
+
+    else:
+        df = pd.read_csv('bookmarks.csv')
+        print(df)
 
     main()
 
@@ -66,6 +74,7 @@ def add_bookmark():
 
 def open_bookmark(bookmark):
 
+    df = pd.read_csv('bookmarks.csv')
     url = df.loc[bookmark, 'URL']
     os.system(f'xdg-open {url}')
 
@@ -74,21 +83,35 @@ def open_bookmark(bookmark):
 def alphabetize_bookmarks():
     
     print()
-    df = pd.read_csv('bookmarks.csv')
-    print(df.sort_values('URL'))
+    if SHOW_URLS == False:
+        df = pd.read_csv('bookmarks.csv')
+        df = (df[['NAME', 'TAGS']])
+        print(df.sort_values('NAME'))
+
+    else:
+        df = pd.read_csv('bookmarks.csv')
+        print(df.sort_values('NAME'))
 
     main()
 
 def filter_bookmarks(tag): 
 
     print()
-    df = pd.read_csv('bookmarks.csv')
-    newdf = df[(df.TAGS.str.contains(tag))]
-    print(newdf)
+    if SHOW_URLS == False:
+        df = pd.read_csv('bookmarks.csv')
+        df = (df[['NAME', 'TAGS']])
+        df = df[(df.TAGS.str.contains(tag))]
+        print(df)
+
+    else:
+        df = pd.read_csv('bookmarks.csv')
+        df = df[(df.TAGS.str.contains(tag))]
+        print(df)
 
     main()
 
 def help():
+
     print()
     print("Opening a bookmark can be done by entering the column number associated with that bookmark")
     print("To add a bookmark enter: 'add'")
@@ -121,12 +144,9 @@ def first_time_check(): #Checks if program has been run before, if not makes CSV
         bookmarks.close()
 
 os.system('clear')
+
 first_time_check()
-
-print()
-df = pd.read_csv('bookmarks.csv')
-print(df)
-
+show_bookmarks()
 main()
     
 
