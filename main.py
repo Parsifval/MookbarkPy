@@ -17,6 +17,11 @@ def main():
             user_choice = user_choice.replace(' ', '')
             filter_bookmarks(user_choice)
 
+        elif 'search' in user_choice:
+            user_choice = user_choice.replace('search', '')
+            user_choice = user_choice.replace(' ', '')
+            search_bookmark(user_choice)
+
         elif 'abc' in user_choice:
             alphabetize_bookmarks()
 
@@ -48,12 +53,11 @@ def show_bookmarks():
     if SHOW_URLS == False:
         df = pd.read_csv('bookmarks.csv')
         df = (df[['NAME', 'TAGS']])
-        print(df)
 
     else:
         df = pd.read_csv('bookmarks.csv')
-        print(df)
-
+    
+    print(df)
     main()
 
 def add_bookmark(): 
@@ -61,6 +65,11 @@ def add_bookmark():
     bookmark_url = input('URL of Bookmark: ')
     bookmark_name = input('Name of Bookmark: ')
     bookmark_tags = input('Tags of Bookmark: ')
+
+    # Removes commas from user inputs to prevent user creating an invalid dataframe
+
+    bookmark_url = bookmark_url.replace(',', '')
+    bookmark_name = bookmark_name.replace(',', '')
     bookmark_tags = bookmark_tags.replace(',', ' ')
 
     bookmark_string = f'{bookmark_url}, {bookmark_name}, {bookmark_tags} \n'
@@ -86,12 +95,11 @@ def alphabetize_bookmarks():
     if SHOW_URLS == False:
         df = pd.read_csv('bookmarks.csv')
         df = (df[['NAME', 'TAGS']])
-        print(df.sort_values('NAME'))
 
     else:
         df = pd.read_csv('bookmarks.csv')
-        print(df.sort_values('NAME'))
-
+    
+    print(df)
     main()
 
 def filter_bookmarks(tag): 
@@ -101,11 +109,35 @@ def filter_bookmarks(tag):
         df = pd.read_csv('bookmarks.csv')
         df = (df[['NAME', 'TAGS']])
         df = df[(df.TAGS.str.contains(tag))]
-        print(df)
 
     else:
         df = pd.read_csv('bookmarks.csv')
         df = df[(df.TAGS.str.contains(tag))]
+    
+    if df.empty:
+        print('Nothing found')
+
+    else:
+        print(df)
+
+    main()
+    
+def search_bookmark(name):
+    
+    print()
+    if SHOW_URLS == False:
+        df = pd.read_csv('bookmarks.csv')
+        df = (df[['NAME', 'TAGS']])
+        df = df[(df.NAME.str.contains(name))]
+
+    else:
+        df = pd.read_csv('bookmarks.csv')
+        df = df[(df.NAME.str.contains(name))]
+
+    if df.empty:
+        print('Nothing found')
+
+    else:
         print(df)
 
     main()
@@ -116,6 +148,7 @@ def help():
     print("Opening a bookmark can be done by entering the column number associated with that bookmark")
     print("To add a bookmark enter: 'add'")
     print("To filter bookmarks by tag enter: 'filter YOUR_TAG'")
+    print("To filter bookmarks by name enter: 'search YOUR_SEARCH'")
     print("To organise your bookmarks alphabetically enter: 'abc'")
     print("To view your bookmarks enter: 'show'")
     print("To exit MookBark enter: 'exit'")

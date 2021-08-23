@@ -25,6 +25,10 @@ To filter bookmarks by tag enter:
 ```
 filter YOUR_TAG
 ```
+To search bookmarks by name enter:
+```
+search YOUR_SEARCH
+```
 To put the list of bookmarks in alphabetical order:
 ```
 abc
