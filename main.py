@@ -13,8 +13,7 @@ def main():
             add_bookmark()
 
         elif 'filter' in user_choice:
-            user_choice = user_choice.replace('filter', '')
-            user_choice = user_choice.replace(' ', '')
+            user_choice = user_choice.replace('filter ', '')
             filter_bookmarks(user_choice)
 
         elif 'search' in user_choice:
@@ -66,8 +65,7 @@ def add_bookmark():
     bookmark_name = input('Name of Bookmark: ')
     bookmark_tags = input('Tags of Bookmark: ')
 
-    # Removes commas from user inputs to prevent user creating an invalid dataframe
-
+    #Removes commas from user inputs to prevent user creating a broken dataframe
     bookmark_url = bookmark_url.replace(',', '')
     bookmark_name = bookmark_name.replace(',', '')
     bookmark_tags = bookmark_tags.replace(',', ' ')
@@ -95,9 +93,11 @@ def alphabetize_bookmarks():
     if SHOW_URLS == False:
         df = pd.read_csv('bookmarks.csv')
         df = (df[['NAME', 'TAGS']])
+        df = df.sort_values('NAME')
 
     else:
         df = pd.read_csv('bookmarks.csv')
+        df = df.sort_values('NAME')
     
     print(df)
     main()
@@ -169,6 +169,9 @@ def first_time_check(): #Checks if program has been run before, if not makes CSV
         bookmark_url = input('URL of Bookmark: ')
         bookmark_name = input('Name of Bookmark: ')
         bookmark_tags = input('Tags of Bookmark: ')
+
+        bookmark_url = bookmark_url.replace(',', '')
+        bookmark_name = bookmark_name.replace(',', '')
         bookmark_tags = bookmark_tags.replace(',', ' ')
 
         bookmark_string = f'{bookmark_url}, {bookmark_name}, {bookmark_tags} \n'
