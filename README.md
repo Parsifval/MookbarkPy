@@ -1,5 +1,5 @@
 # MookbarkPy
-Terminal based Bookmark Manager written in Python using the Pandas library
+Terminal based Bookmark Manager written in Python using Pandas
 
 ![image](https://user-images.githubusercontent.com/81819378/129057842-f5518583-1d02-48b2-b6aa-4ada7be15b5f.png)
 
